@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="8dp"
+    >
+
+    <TextView
+        android:id="@+id/github_search_result_title_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="?attr/textAppearanceSearchResultTitle"
+        tools:text="Anko"
+        />
+
+    <TextView
+        android:id="@+id/github_search_result_subtitle_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/github_search_result_title_text"
+        style="?attr/textAppearanceSearchResultSubtitle"
+        tools:text="Jetbrains"
+        />
+
+    <TextView
+        android:id="@+id/github_search_result_description_text"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/github_search_result_subtitle_text"
+        android:layout_marginTop="8dp"
+        android:maxLines="2"
+        tools:text="Pleasant Android application development, Pleasant Android application development"
+        />
+
+    <TextView
+        android:id="@+id/github_search_result_stargazer_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@id/github_search_result_title_text"
+        android:layout_alignBottom="@id/github_search_result_title_text"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:drawablePadding="4dp"
+        android:drawableRight="@drawable/ic_github_search_star"
+        tools:text="999"
+        />
+
+</RelativeLayout>
