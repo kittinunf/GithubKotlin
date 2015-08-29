@@ -1,6 +1,7 @@
 package com.github.kittinunf.githubkotlin.view
 
-import android.graphics.Rect
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
@@ -20,7 +21,6 @@ import kotlin.properties.Delegates
 public class GithubSearchActivity : AppCompatActivity() {
 
     val recyclerView by Delegates.lazy { findViewById(R.id.github_search_recyclerview) as RecyclerView }
-
     val layoutManager by Delegates.lazy { LinearLayoutManager(this) }
 
     val adapter = GithubSearchResultAdapter()
@@ -66,10 +66,20 @@ public class GithubSearchActivity : AppCompatActivity() {
     }
 
     class SearchResultViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+
+        var clickListener: ((View) -> Unit)? = null
+
+        init {
+            view.setOnClickListener {
+                clickListener?.invoke(it)
+            }
+        }
+
         val repoName by Delegates.lazy { view.findViewById(R.id.github_search_result_title_text) as TextView }
         val ownerName by Delegates.lazy { view.findViewById(R.id.github_search_result_subtitle_text) as TextView }
         val repoDescription by Delegates.lazy { view.findViewById(R.id.github_search_result_description_text) as TextView }
         val stargazerCount by Delegates.lazy { view.findViewById(R.id.github_search_result_stargazer_count) as TextView }
+
     }
 
     inner class GithubSearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {
@@ -90,6 +100,11 @@ public class GithubSearchActivity : AppCompatActivity() {
             viewHolder.ownerName.setText(item.ownerName)
             viewHolder.repoDescription.setText(item.repoDescription)
             viewHolder.stargazerCount.setText(item.stargazerCount.toString())
+
+            viewHolder.clickListener = {
+                val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.htmlLink));
+                startActivity(browseIntent)
+            }
         }
 
     }
