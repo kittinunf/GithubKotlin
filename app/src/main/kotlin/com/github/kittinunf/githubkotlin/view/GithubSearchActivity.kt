@@ -37,8 +37,8 @@ public class GithubSearchActivity : AppCompatActivity() {
     }
 
     fun setUIRecyclerView() {
-        githubSearchRecyclerview.setLayoutManager(layoutManager)
-        githubSearchRecyclerview.setAdapter(adapter)
+        searchRecyclerview.setLayoutManager(layoutManager)
+        searchRecyclerview.setAdapter(adapter)
     }
 
     fun requestGithubSearchAPI() {
@@ -93,10 +93,10 @@ public class GithubSearchActivity : AppCompatActivity() {
         override fun onBindViewHolder(viewHolder: SearchResultViewHolder, position: Int) {
             val item = searchResults[position]
 
-            viewHolder.view.githubSearchResultTitleText.setText(item.repoName)
-            viewHolder.view.githubSearchResultSubtitleText.setText(item.ownerName)
-            viewHolder.view.githubSearchResultDescriptionText.setText(item.repoDescription)
-            viewHolder.view.githubSearchResultStargazerCount.setText(item.stargazerCount.toString())
+            viewHolder.view.searchResultTitleText.setText(item.repoName)
+            viewHolder.view.searchResultSubtitleText.setText(item.ownerName)
+            viewHolder.view.searchResultDescriptionText.setText(item.repoDescription)
+            viewHolder.view.searchResultStargazerCount.setText(item.stargazerCount.toString())
 
             viewHolder.clickListener = {
                 val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.htmlLink));
