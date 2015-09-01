@@ -18,9 +18,11 @@ import fuel.httpGet
 import org.json.JSONObject
 import kotlin.properties.Delegates
 
+import kotlinx.android.synthetic.activity_github_search.*
+import kotlinx.android.synthetic.list_item_github_search.view.*
+
 public class GithubSearchActivity : AppCompatActivity() {
 
-    val recyclerView by Delegates.lazy { findViewById(R.id.github_search_recyclerview) as RecyclerView }
     val layoutManager by Delegates.lazy { LinearLayoutManager(this) }
 
     val adapter = GithubSearchResultAdapter()
@@ -35,12 +37,12 @@ public class GithubSearchActivity : AppCompatActivity() {
     }
 
     fun setUIRecyclerView() {
-        recyclerView.setLayoutManager(layoutManager)
-        recyclerView.setAdapter(adapter)
+        githubSearchRecyclerview.setLayoutManager(layoutManager)
+        githubSearchRecyclerview.setAdapter(adapter)
     }
 
     fun requestGithubSearchAPI() {
-        val params = hashMapOf("q" to "language:kotlin", "sort" to "starts", "order" to "desc")
+        val params = hashMapOf("q" to "language:kotlin", "sort" to "stars", "order" to "desc")
 
         //request to github api
         "https://api.github.com/search/repositories".httpGet(params).responseString { request, response, either ->
@@ -75,11 +77,6 @@ public class GithubSearchActivity : AppCompatActivity() {
             }
         }
 
-        val repoName by Delegates.lazy { view.findViewById(R.id.github_search_result_title_text) as TextView }
-        val ownerName by Delegates.lazy { view.findViewById(R.id.github_search_result_subtitle_text) as TextView }
-        val repoDescription by Delegates.lazy { view.findViewById(R.id.github_search_result_description_text) as TextView }
-        val stargazerCount by Delegates.lazy { view.findViewById(R.id.github_search_result_stargazer_count) as TextView }
-
     }
 
     inner class GithubSearchResultAdapter : RecyclerView.Adapter<SearchResultViewHolder>() {
@@ -96,10 +93,10 @@ public class GithubSearchActivity : AppCompatActivity() {
         override fun onBindViewHolder(viewHolder: SearchResultViewHolder, position: Int) {
             val item = searchResults[position]
 
-            viewHolder.repoName.setText(item.repoName)
-            viewHolder.ownerName.setText(item.ownerName)
-            viewHolder.repoDescription.setText(item.repoDescription)
-            viewHolder.stargazerCount.setText(item.stargazerCount.toString())
+            viewHolder.view.githubSearchResultTitleText.setText(item.repoName)
+            viewHolder.view.githubSearchResultSubtitleText.setText(item.ownerName)
+            viewHolder.view.githubSearchResultDescriptionText.setText(item.repoDescription)
+            viewHolder.view.githubSearchResultStargazerCount.setText(item.stargazerCount.toString())
 
             viewHolder.clickListener = {
                 val browseIntent = Intent(Intent.ACTION_VIEW, Uri.parse(item.htmlLink));

@@ -8,7 +8,7 @@
     >
 
     <TextView
-        android:id="@+id/github_search_result_title_text"
+        android:id="@+id/githubSearchResultTitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         style="?attr/textAppearanceSearchResultTitle"
@@ -16,31 +16,31 @@
         />
 
     <TextView
-        android:id="@+id/github_search_result_subtitle_text"
+        android:id="@+id/githubSearchResultSubtitleText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/github_search_result_title_text"
+        android:layout_below="@id/githubSearchResultTitleText"
         style="?attr/textAppearanceSearchResultSubtitle"
         tools:text="Jetbrains"
         />
 
     <TextView
-        android:id="@+id/github_search_result_description_text"
+        android:id="@+id/githubSearchResultDescriptionText"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_below="@id/github_search_result_subtitle_text"
+        android:layout_below="@id/githubSearchResultSubtitleText"
         android:layout_marginTop="8dp"
         android:maxLines="2"
         tools:text="Pleasant Android application development, Pleasant Android application development"
         />
 
     <TextView
-        android:id="@+id/github_search_result_stargazer_count"
+        android:id="@+id/githubSearchResultStargazerCount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
-        android:layout_toRightOf="@id/github_search_result_title_text"
-        android:layout_alignBottom="@id/github_search_result_title_text"
+        android:layout_toRightOf="@id/githubSearchResultTitleText"
+        android:layout_alignBottom="@id/githubSearchResultTitleText"
         android:layout_alignParentRight="true"
         android:gravity="right"
         android:drawablePadding="4dp"
